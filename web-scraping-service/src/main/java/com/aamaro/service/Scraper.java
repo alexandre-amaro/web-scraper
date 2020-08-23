@@ -32,7 +32,7 @@ public class Scraper {
 			try {
 				
 				if (url.startsWith("www.")) {
-					url += "http://" + url;
+					url = "http://" + url;
 				}
 				Document doc = Jsoup.connect(url).get();
 				Elements links = doc.select("a[href]");
