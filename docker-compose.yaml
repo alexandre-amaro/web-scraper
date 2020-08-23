@@ -11,8 +11,7 @@ services:
             ARTEMIS_USERNAME: admin
             ARTEMIS_PASSWORD: admin
         volumes:
-            - ./node0/etc/:/var/lib/artemis/etc
-            - ./node0/tmp/:/var/lib/artemis/tmp
+            - ./activemq/tmp/:/var/lib/artemis/tmp
 
     web-scraping-service:
         restart: always
