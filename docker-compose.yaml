@@ -12,6 +12,7 @@ services:
             ARTEMIS_PASSWORD: admin
         volumes:
             - ./activemq/tmp/:/var/lib/artemis/tmp
+            - ./activemq/data/:/var/lib/artemis/data
 
     web-scraping-service:
         restart: always
