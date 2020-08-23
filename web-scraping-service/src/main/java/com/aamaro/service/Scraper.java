@@ -30,6 +30,10 @@ public class Scraper {
 		if (startLevel <= maxLevel) {
 			
 			try {
+				
+				if (url.startsWith("www.")) {
+					url += "http://" + url;
+				}
 				Document doc = Jsoup.connect(url).get();
 				Elements links = doc.select("a[href]");
 							
