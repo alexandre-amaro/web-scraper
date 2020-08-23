@@ -1,0 +1,83 @@
+<div class="converter-container">
+  <div>
+      <h2 class="header">Web Scraping - aamaro.com</h2>
+      <div class="container-rows">
+
+
+
+        <form nz-form nzLayout="inline">
+
+            <nz-form-item>
+              <nz-form-label>URL</nz-form-label>
+              <nz-form-control nzHasFeedback nzErrorTip="Invalid URL">
+                <input nz-input [(ngModel)]="request.url"  nzSize="large" id="url" name="url" 
+                #url="ngModel"
+                required
+                style="width:300px"
+                pattern="^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$" />
+              </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+              <nz-form-label>Levels</nz-form-label>
+              <nz-form-control>
+                <nz-select [(ngModel)]="request.maxLevels" nzSize="large" id="level" name="level" style="width:60px">
+                  <nz-option *ngFor="let c of levels" [nzValue]="c.value" [nzLabel]="c.value">
+                  </nz-option>                
+                </nz-select>  
+              </nz-form-control>
+            </nz-form-item>     
+            
+            <nz-form-item>
+              <nz-form-control>
+                <button nz-button nzType="primary" nzSize="large" [disabled]="url.errors || isLoading" (click)="submit()">Submit</button> 
+              </nz-form-control>        
+            </nz-form-item>
+        </form>
+      </div>      
+  </div>
+</div>
+
+<div class="result-container">
+  <nz-table [nzData]="list" #historyTable style="width:80%" 
+    [nzShowPagination]="false" [nzTotal]="true" nzSize="small">
+    <thead>
+      <tr>        
+        <th></th>
+        <th>URL</th>
+        <th>Date/Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of historyTable.data">        
+        <td *ngIf="data.status == 'LOADING'"><nz-spin nzSimple></nz-spin></td>
+        <td *ngIf="data.status == 'OK'"><button nz-button nzType="primary" nzSize="small" (click)="view(data.id)">View links</button> </td>
+        <td *ngIf="data.status == 'ERROR'">{{data.status}}</td>
+        <td>{{data.url}}<div *ngIf="data.status == 'ERROR'"> ({{data.error}})</div></td>
+        <td>{{data.createdOn}}</td>                
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <div class="result-container" style="width:80%">
+    <nz-collapse style="width:100%">
+      <nz-collapse-panel [nzHeader]="detailsFor" [nzActive]="true">
+        <div *ngIf="isLoadingDetails">
+          <nz-spin nzSimple></nz-spin>
+        </div>
+        <div *ngIf="!isLoadingDetails && nodes && nodes.length > 0">
+          <nz-tree #nzTreeComponent [nzData]="nodes" [nzExpandAll]="true" style="width:100%">
+          </nz-tree>
+        </div>
+        <div *ngIf="!nodes || nodes.length == 0">
+          <nz-empty></nz-empty>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
+  </div>
+
+</div>
+
+
+
+

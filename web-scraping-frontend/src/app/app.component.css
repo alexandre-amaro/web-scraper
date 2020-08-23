@@ -1,0 +1,52 @@
+.container-rows {
+    display:flex;
+    flex-wrap:wrap
+}
+.converter-container {
+    margin: auto;    
+    margin-top: 30px;
+    align-items: center;
+    border-radius: 15px 15px 15px 15px;
+    padding: 5px 32px 30px;
+    color:black;
+    width: 80%;
+
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#deefff+0,98bede+100;Blue+3D+%2310 */
+background: #deefff; /* Old browsers */
+background: -moz-linear-gradient(top,  #deefff 0%, #98bede 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #deefff 0%,#98bede 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #deefff 0%,#98bede 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#deefff', endColorstr='#98bede',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+.header {
+    padding-bottom: 10px;
+    color: black;
+    margin-top: 20px;
+    margin-bottom: 20px; 
+    margin-left: 20px;    
+}
+
+.input-container {
+    display:flex; 
+    flex-direction:column; 
+    margin-left: 20px;
+}
+
+.cur-icon {
+    font-size: 20px;
+}
+
+.convert-button {
+    margin-left:30px;
+    margin-top: 20px
+}
+
+.result-container {
+    display:flex; 
+    flex-direction:column; 
+    margin-top: 50px; 
+    align-items: center;
+}
